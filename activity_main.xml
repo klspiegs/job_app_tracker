@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#fff">
 
     <Button
         android:id="@+id/addbtn"
@@ -57,11 +58,15 @@
         android:gravity="center"
         android:background="#FDDD"
         android:id="@+id/adView"/>
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/img_0464" 
         android:layout_below="@id/title"
-        app:srcCompat="@drawable/data_visualization_52" />
+        android:layout_centerHorizontal="true"/>
+
 
 </RelativeLayout>
