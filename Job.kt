@@ -1,16 +1,16 @@
-package com.example.final_436
+package com.example.job_app_tracker
 
 import java.util.Date
 
 // location is a String storing the state of the job
-// deadline is a String formatted like MM/DD/YYYY
+// deadline is a Triple of Ints formatted like <Day, Month, Year>
 
 class Job {
 
     private lateinit var jobName : String
     private lateinit var companyName : String
     private lateinit var location : String
-    private lateinit var deadline : String
+    private lateinit var deadline : Triple<Int, Int, Int>
     private var applied : Boolean = true
 
     // getters and setters
@@ -38,11 +38,11 @@ class Job {
         this.location = location
     }
 
-    fun getDeadline() : String {
-        return jobName
+    fun getDeadline() : Triple<Int, Int, Int> {
+        return deadline
     }
 
-    fun setDeadline(deadline : String) {
+    fun setDeadline(deadline : Triple<Int, Int, Int>) {
         this.deadline = deadline
     }
 

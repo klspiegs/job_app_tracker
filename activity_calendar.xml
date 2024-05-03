@@ -8,11 +8,38 @@
     android:gravity="center"
     >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/jobText"
+            android:layout_weight="6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="All Jobs"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/all"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Show All Jobs"
+            app:cornerRadius="0dp"
+            android:layout_marginRight="10dp"/>
+
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/jobs"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"/>
+        android:layout_weight="3"/>
 
     <CalendarView
         android:id="@+id/calendar"
@@ -21,11 +48,13 @@
         android:layout_weight="4"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/home"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Home"
         android:textSize="40sp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        app:cornerRadius="0dp"/>
 
 </LinearLayout>
