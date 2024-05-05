@@ -33,6 +33,7 @@
         <activity
             android:name="com.google.android.gms.ads.AdActivity" />
         <activity android:name=".CalendarActivity"/>
+        <activity android:name=".JobActivity"/>
     </application>
 
 </manifest>
