@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="Show All Jobs"
             app:cornerRadius="0dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            style="@style/BtnStyle"/>
 
 
     </LinearLayout>
@@ -55,6 +56,7 @@
         android:text="Home"
         android:textSize="40sp"
         android:layout_marginBottom="10dp"
-        app:cornerRadius="0dp"/>
+        app:cornerRadius="0dp"
+        style="@style/BtnStyle"/>
 
 </LinearLayout>

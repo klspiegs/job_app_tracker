@@ -1,5 +1,6 @@
 package com.example.job_app_tracker
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -15,7 +16,8 @@ class CalendarActivity: AppCompatActivity() {
 
     private lateinit var listView : ListView
     private lateinit var textView: TextView
-    private lateinit var jobs: ArrayList<Job>
+    private lateinit var allJobs: ArrayList<Job>
+    private lateinit var clickedJobs: ArrayList<Job>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,21 +37,27 @@ class CalendarActivity: AppCompatActivity() {
         allButton.setOnClickListener{showAllJobs()}
 
         //Testing stuff, will just pull jobs from firebase
-        jobs = ArrayList()
+        allJobs = ArrayList()
         var testJob1: Job = Job()
         testJob1.setJobName("Engineer")
         testJob1.setCompanyName("Google")
         testJob1.setDeadline(Triple(4,5,2024))
-        jobs.add(testJob1)
+        allJobs.add(testJob1)
 
         var testJob2: Job = Job()
         testJob2.setJobName("IT Technician")
         testJob2.setCompanyName("Amazon")
         testJob2.setDeadline(Triple(12,5,2024))
-        jobs.add(testJob2)
+        allJobs.add(testJob2)
 
         showAllJobs()
 
+    }
+
+    fun toJobPage(index: Int) {
+        currJob = clickedJobs[index]
+        var myIntent: Intent = Intent(this, JobActivity::class.java)
+        startActivity(myIntent)
     }
 
     fun displayList(jobs: ArrayList<Job>) {
@@ -67,12 +75,13 @@ class CalendarActivity: AppCompatActivity() {
 
     fun showAllJobs() {
         textView.text = "Showing All Jobs"
-        displayList(jobs)
+        clickedJobs = allJobs
+        displayList(allJobs)
     }
 
     inner class ListItemHandler: AdapterView.OnItemClickListener {
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            TODO("Not yet implemented")
+            toJobPage(position)
         }
     }
 
@@ -84,13 +93,18 @@ class CalendarActivity: AppCompatActivity() {
             dayOfMonth: Int
         ) {
             var jobsOnDay: ArrayList<Job> = ArrayList()
-            for(job in jobs){
+            for(job in allJobs){
                 if(job.getDeadline().first == dayOfMonth && job.getDeadline().second == (month+1) && job.getDeadline().third == year){
                     jobsOnDay.add(job)
                 }
             }
+            clickedJobs = jobsOnDay
             displayList(jobsOnDay)
             textView.text = "Showing Jobs Due On " + (month+1).toString() + "/" + dayOfMonth.toString() + "/" + year.toString()
         }
+    }
+
+    companion object {
+        lateinit var currJob: Job
     }
 }
