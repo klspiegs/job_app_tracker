@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <TextView
+        android:id="@+id/settingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_centerHorizontal="true"
+        style="@style/HeaderStyle"
+        />
+
+    <Button
+        android:id="@+id/mode"
+        android:layout_height="wrap_content"
+        android:text="Switch to Dark Mode"
+        style="@style/BtnStyle"
+        android:layout_below="@id/settingTitle"
+        app:cornerRadius="0dp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        style="@style/BtnStyle"
+        android:layout_below="@id/mode"
+        app:cornerRadius="0dp"/>
+</RelativeLayout>
