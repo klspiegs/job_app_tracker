@@ -1,5 +1,6 @@
 package com.example.groupproject
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,29 +9,20 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
 
 class SettingsActivity : AppCompatActivity() {
-
-    private lateinit var sets : Settings
-//    private lateinit var sets : Settings
-//    var nightMode : Int = AppCompatDelegate.getDefaultNightMode()
-//    private lateinit var sharedPreferences: SharedPreferences
-//    private lateinit var editor: SharedPreferences.Editor
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
-//        sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE)
-        sets = Settings(this)
-        Log.w("SettingsActivity", sets.getMode().toString())
-
-        if (sets.getMode()) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        
+        sharedPreferences = this.getSharedPreferences("modePrefs",
+            Context.MODE_PRIVATE)
+        var mode = sharedPreferences.getInt("darkMode", AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(mode)
+        Log.w("CAUGHT", "mode: $mode")
 
         var modeBtn = findViewById<Button>(R.id.mode)
-        modeBtn.setOnClickListener { switchModes(sets.getMode()) }
+        modeBtn.setOnClickListener { switchModes(mode) }
 
         var backBtn = findViewById<Button>(R.id.exit)
         backBtn.setOnClickListener { finish() }
@@ -38,24 +30,15 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        nightMode = AppCompatDelegate.getDefaultNightMode()
-//        sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE)
-//        editor = sharedPreferences.edit()
-//        editor.putInt("nightMode", nightMode)
-//        editor.apply()
-//    }
-
-    fun switchModes(darkMode : Boolean) {
-        if (darkMode) {
-            sets.setMode(this, false)
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+    private fun switchModes(darkMode : Int) {
+        var mode : Int = darkMode
+        if (darkMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            mode = AppCompatDelegate.MODE_NIGHT_NO
         } else {
-            sets.setMode(this, true)
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            mode = AppCompatDelegate.MODE_NIGHT_YES
         }
-        Log.w("SettingsActivity", "switch:" + sets.getMode().toString())
+        sharedPreferences.edit().putInt("darkMode", mode).apply()
+        Log.w("SWITCH", "mode: $mode")
         recreate()
     }
 }
