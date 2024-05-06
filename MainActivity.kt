@@ -1,11 +1,17 @@
 package com.example.groupproject
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.NightMode
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -15,18 +21,21 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
-class MainActivity : AppCompatActivity() {
-    private var ad : InterstitialAd? = null
 
+class MainActivity : AppCompatActivity() {
+    private lateinit var sharedPreferences: SharedPreferences
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Dark Mode Preferences
         sharedPreferences = this.getSharedPreferences("modePrefs",
             Context.MODE_PRIVATE)
         var mode = sharedPreferences.getInt("darkMode", AppCompatDelegate.MODE_NIGHT_NO)
         AppCompatDelegate.setDefaultNightMode(mode)
+
+
 
         // create an AdView
         var adView = AdView( this )
@@ -50,10 +59,9 @@ class MainActivity : AppCompatActivity() {
         var calBtn : Button = findViewById<Button>(R.id.viewbtn)
         calBtn.setOnClickListener() { toCalendarPage() }
 
-//        var adUnitId : String = "ca-app-pub-3940256099942544/1033173711"
-        var adRequest : AdRequest = AdRequest.Builder( ).build()
-        var adLoad : AdLoad = AdLoad( )
-        InterstitialAd.load( this, adUnitId, adRequest, adLoad )
+        var setBtn : Button = findViewById(R.id.settings)
+        setBtn.setOnClickListener { toSettings() }
+
 
 
     }
@@ -63,56 +71,14 @@ class MainActivity : AppCompatActivity() {
 //        startActivity(myIntent)
 //    }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun toCalendarPage() {
         var myIntent : Intent = Intent(this, CalendarActivity::class.java)
         startActivity(myIntent)
     }
 
-    inner class AdLoad : InterstitialAdLoadCallback( ) {
-        override fun onAdLoaded(p0: InterstitialAd) {
-            super.onAdLoaded(p0)
-            // assign p0 to ad
-            ad = p0
-            // show the ad
-            if( ad != null ) {
-                ad!!.show(this@MainActivity)
-                // manage the user interaction with the ad
-                var manageAd : ManageAdShowing = ManageAdShowing()
-                ad!!.fullScreenContentCallback = manageAd
-            }
-
-        }
-
-        override fun onAdFailedToLoad(p0: LoadAdError) {
-            super.onAdFailedToLoad(p0)
-            Log.w( "MainActivity", "error loading the ad: " + p0.message )
-        }
-    }
-
-    inner class ManageAdShowing : FullScreenContentCallback( ) {
-        override fun onAdDismissedFullScreenContent() {
-            super.onAdDismissedFullScreenContent()
-            Log.w( "MainActivity", "Ad dismissed" )
-        }
-
-        override fun onAdClicked() {
-            super.onAdClicked()
-            Log.w( "MainActivity", "ad clicked"  )
-        }
-
-        override fun onAdImpression() {
-            super.onAdImpression()
-            Log.w( "MainActivity", "ad impressed" )
-        }
-
-        override fun onAdShowedFullScreenContent() {
-            super.onAdShowedFullScreenContent()
-            Log.w( "MainActivity", " ad shown" )
-        }
-
-        override fun onAdFailedToShowFullScreenContent(p0: AdError) {
-            super.onAdFailedToShowFullScreenContent(p0)
-            Log.w( "MainActivity", " ad failed to show" )
-        }
+    fun toSettings() {
+        var myIntent : Intent = Intent(this, SettingsActivity::class.java)
+        startActivity(myIntent)
     }
 }
