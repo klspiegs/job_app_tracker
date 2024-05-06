@@ -14,14 +14,18 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        
+
+        var modeBtn = findViewById<Button>(R.id.mode)
         sharedPreferences = this.getSharedPreferences("modePrefs",
             Context.MODE_PRIVATE)
         var mode = sharedPreferences.getInt("darkMode", AppCompatDelegate.MODE_NIGHT_NO)
         AppCompatDelegate.setDefaultNightMode(mode)
+        if (mode == AppCompatDelegate.MODE_NIGHT_YES) {
+            modeBtn.text = "Switch to Light Mode"
+        }
         Log.w("CAUGHT", "mode: $mode")
 
-        var modeBtn = findViewById<Button>(R.id.mode)
+
         modeBtn.setOnClickListener { switchModes(mode) }
 
         var backBtn = findViewById<Button>(R.id.exit)
