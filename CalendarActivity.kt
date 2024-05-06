@@ -1,6 +1,8 @@
-package com.example.job_app_tracker
+package com.example.groupproject
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -13,6 +15,7 @@ import android.widget.CalendarView.OnDateChangeListener
 import android.widget.ListView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 
@@ -22,6 +25,7 @@ class CalendarActivity: AppCompatActivity() {
     private lateinit var textView: TextView
     private lateinit var allJobs: ArrayList<Job>
     private lateinit var clickedJobs: ArrayList<Job>
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
