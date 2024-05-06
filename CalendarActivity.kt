@@ -27,6 +27,12 @@ class CalendarActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
 
+        // Dark Mode Preferences
+        sharedPreferences = this.getSharedPreferences("modePrefs",
+            Context.MODE_PRIVATE)
+        var mode = sharedPreferences.getInt("darkMode", AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(mode)
+
         listView = findViewById(R.id.jobs)
         textView = findViewById(R.id.jobText)
 
