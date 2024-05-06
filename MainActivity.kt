@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Dark Mode Preferences
+        sharedPreferences = this.getSharedPreferences("modePrefs",
+            Context.MODE_PRIVATE)
+        var mode = sharedPreferences.getInt("darkMode", AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(mode)
+
         // create an AdView
         var adView = AdView( this )
         var adSize : AdSize = AdSize( AdSize.FULL_WIDTH, AdSize.AUTO_HEIGHT )
