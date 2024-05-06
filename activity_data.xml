@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DataActivity"
+    >
+
+    <!-- open date picker -->
+    <Button
+        android:id="@+id/button_pick_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Deadline" />
+
+    <EditText
+        android:id="@+id/edit_deadline"
+        android:layout_below="@id/button_pick_deadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deadline"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/jobTitle"
+        android:layout_below="@id/edit_deadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Job Title"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/companyName"
+        android:layout_below="@id/jobTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Company Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/jobLocation"
+        android:layout_below="@id/companyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location"
+        android:inputType="text" />
+
+
+    <CheckBox
+        android:id="@+id/checkbox_applied"
+        android:layout_below="@id/jobLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Did you apply?" />
+
+    <Button
+        android:id="@+id/button_add_data"
+        android:layout_below="@id/checkbox_applied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Data" />
+
+</RelativeLayout>
