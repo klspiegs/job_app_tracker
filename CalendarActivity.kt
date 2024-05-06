@@ -1,6 +1,7 @@
 package com.example.job_app_tracker
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -11,6 +12,9 @@ import android.widget.CalendarView
 import android.widget.CalendarView.OnDateChangeListener
 import android.widget.ListView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 
 class CalendarActivity: AppCompatActivity() {
 
@@ -42,12 +46,16 @@ class CalendarActivity: AppCompatActivity() {
         testJob1.setJobName("Engineer")
         testJob1.setCompanyName("Google")
         testJob1.setDeadline(Triple(4,5,2024))
+        testJob1.setLocation("1600 Amphitheatre Parkway, Mountain View California")
+        testJob1.setApplied(true)
         allJobs.add(testJob1)
 
         var testJob2: Job = Job()
         testJob2.setJobName("IT Technician")
         testJob2.setCompanyName("Amazon")
         testJob2.setDeadline(Triple(12,5,2024))
+        testJob2.setLocation("601 New Jersey Ave")
+        testJob2.setApplied(false)
         allJobs.add(testJob2)
 
         showAllJobs()
