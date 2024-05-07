@@ -1,4 +1,4 @@
-package com.example.jobtracker_mypart
+package com.example.job_app_tracker
 
 import android.os.Bundle
 import android.widget.Button
@@ -14,25 +14,28 @@ import java.util.*
 
 class DataActivity : AppCompatActivity() {
 
-    private lateinit var radioApplied: RadioButton
-    private lateinit var editJobName: EditText
     // Add EditText variables for location, deadline, etc.
     private lateinit var checkboxApplied: CheckBox
     private lateinit var buttonAddData: Button
     private lateinit var editDeadline: EditText
+    private lateinit var editJobName: EditText
+    private lateinit var editCompanyName: EditText
+    private lateinit var editLocation: EditText
+
     private lateinit var buttonPickDeadline: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
 
-        // Initialize views
-        editJobName = findViewById(R.id.jobTitle)
         // Initialize other EditText views
         checkboxApplied = findViewById(R.id.checkbox_applied)
         buttonAddData = findViewById(R.id.button_add_data)
         editDeadline = findViewById(R.id.edit_deadline)
-        buttonPickDeadline = findViewById(R.id.button_pick_deadline)
+        editJobName = findViewById(R.id.jobTitle)
+        editCompanyName = findViewById(R.id.companyName)
+        editLocation = findViewById(R.id.jobLocation)
+        buttonPickDeadline = findViewById(R.id.buttonPickDeadline)
 
         // Set onClickListener for buttonPickDeadline to show DatePicker dialog
         buttonPickDeadline.setOnClickListener {
@@ -41,16 +44,14 @@ class DataActivity : AppCompatActivity() {
         buttonAddData.setOnClickListener {
             addData()
         }
-
-
     }
 
     private fun addData() {
         // Retrieve data from views
+        val deadline = editDeadline.text.toString()
         val jobName = editJobName.text.toString()
-        val applied = radioApplied.isChecked
-        val location = "" // Get location from EditText
-        val deadline = "" // Get deadline from EditText
+        val companyName = editCompanyName.text.toString()
+        val location = editLocation.text.toString()
         val didApply = checkboxApplied.isChecked
 
 
@@ -65,7 +66,7 @@ class DataActivity : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(this,
             DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 // Display the selected date in the EditText field
-                val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+                val selectedDate = "${monthOfYear + 1}/$dayOfMonth/$year"
                 editDeadline.setText(selectedDate)
             },
             year,
