@@ -1,4 +1,4 @@
-package com.example.groupproject
+package com.example.job_app_tracker
 
 import android.content.Context
 import android.content.Intent
@@ -17,15 +17,13 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
-
 class CalendarActivity: AppCompatActivity() {
 
     private lateinit var listView : ListView
     private lateinit var textView: TextView
     private lateinit var allJobs: ArrayList<Job>
     private lateinit var clickedJobs: ArrayList<Job>
-    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +65,14 @@ class CalendarActivity: AppCompatActivity() {
         testJob2.setLocation("601 New Jersey Ave")
         testJob2.setApplied(false)
         allJobs.add(testJob2)
+
+        var testJob3: Job = Job()
+        testJob3.setJobName("Failure")
+        testJob3.setCompanyName("Nowhere")
+        testJob3.setDeadline(Triple(12,5,2024))
+        testJob3.setLocation("nowhere")
+        testJob3.setApplied(true)
+        allJobs.add(testJob3)
 
         showAllJobs()
 
