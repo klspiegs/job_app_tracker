@@ -1,4 +1,4 @@
-package com.example.groupproject
+package com.example.final_436
 
 import android.content.Context
 import android.content.Intent
@@ -20,6 +20,10 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,12 +63,27 @@ class MainActivity : AppCompatActivity() {
         var calBtn : Button = findViewById<Button>(R.id.viewbtn)
         calBtn.setOnClickListener() { toCalendarPage() }
 
+        var addBtn : Button = findViewById<Button>(R.id.addbtn)
+        addBtn.setOnClickListener() { toAddPage() }
+
         var setBtn : Button = findViewById(R.id.settings)
         setBtn.setOnClickListener { toSettings() }
 
+        //var firebase : FirebaseDatabase = FirebaseDatabase.getInstance()
+        //var listener = DataListener()
+        val sharedPreferences = getSharedPreferences("ReferenceNames", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
 
 
     }
+
+
+
+
+
+
 
 //    fun toAddPage() {
 //        var myIntent : Intent = Intent(this, AddActivity::class.java)
@@ -74,6 +93,11 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun toCalendarPage() {
         var myIntent : Intent = Intent(this, CalendarActivity::class.java)
+        startActivity(myIntent)
+    }
+
+    fun toAddPage() {
+        var myIntent : Intent = Intent(this, DataActivity::class.java)
         startActivity(myIntent)
     }
 
