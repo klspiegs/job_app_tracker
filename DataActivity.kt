@@ -1,4 +1,4 @@
-package com.example.job_app_tracker
+package com.example.final_436
 
 import android.os.Bundle
 import android.widget.Button
@@ -8,7 +8,13 @@ import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 
 import android.app.DatePickerDialog
+import android.util.Log
 import android.widget.DatePicker
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 
@@ -44,6 +50,9 @@ class DataActivity : AppCompatActivity() {
         buttonAddData.setOnClickListener {
             addData()
         }
+
+        var homeButton: Button = findViewById(R.id.exit)
+        homeButton.setOnClickListener{finish()}
     }
 
     private fun addData() {
@@ -54,6 +63,28 @@ class DataActivity : AppCompatActivity() {
         val location = editLocation.text.toString()
         val didApply = checkboxApplied.isChecked
 
+        // add to shared pref
+        val sharedPreferences = getSharedPreferences("ReferenceNames", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val sPsize = sharedPreferences.all.size
+        Log.d("SIZE?", sPsize.toString())
+        editor.putString((sPsize + 1).toString(), "JobInfo" + (sPsize + 1))
+        editor.apply()
+
+        // add to firebase
+        var firebase : FirebaseDatabase = FirebaseDatabase.getInstance()
+        var reference : DatabaseReference = firebase.getReference( "JobInfo" + (sPsize + 1))
+        var testJob = Job()
+        var deadlineList = deadline.split("/")
+        testJob.setDeadline(Triple(deadlineList[1].toInt(), deadlineList[0].toInt(), deadlineList[2].toInt()))
+        testJob.setJobName(jobName)
+        testJob.setLocation(location)
+        testJob.setCompanyName(companyName)
+        testJob.setApplied(didApply)
+
+
+
+        reference.setValue(testJob)
 
     }
 
@@ -76,5 +107,3 @@ class DataActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 }
-
-
