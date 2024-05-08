@@ -134,4 +134,12 @@
         android:layout_height="wrap_content"
         android:text="Add Job" />
 
+    <Button
+        android:id="@+id/exit"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        style="@style/BtnStyle"
+        android:layout_below="@id/button_add_data"
+        app:cornerRadius="0dp"/>
+
 </RelativeLayout>
