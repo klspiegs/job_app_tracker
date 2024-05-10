@@ -18,6 +18,7 @@
     <Button
         android:id="@+id/mode"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:text="Switch to Dark Mode"
         style="@style/BtnStyle"
         android:layout_below="@id/settingTitle"
@@ -27,6 +28,7 @@
     <Button
         android:id="@+id/exit"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:text="Exit"
         style="@style/BtnStyle"
         android:layout_below="@id/mode"
