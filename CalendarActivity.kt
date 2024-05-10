@@ -1,4 +1,4 @@
-package com.example.final_436
+package com.example.job_app_tracker
 
 import android.content.Intent
 import android.os.Build
@@ -36,8 +36,8 @@ class CalendarActivity: AppCompatActivity() {
         textView = findViewById(R.id.jobText)
 
         var calendarView: CalendarView = findViewById(R.id.calendar)
-        //var calListener: CalListener = CalListener()
-        //calendarView.setOnDateChangeListener(calListener)
+        var calListener: CalListener = CalListener()
+        calendarView.setOnDateChangeListener(calListener)
 
         var homeButton: Button = findViewById(R.id.home)
         homeButton.setOnClickListener{finish()}
@@ -148,7 +148,7 @@ class CalendarActivity: AppCompatActivity() {
     fun showAllJobs() {
         textView.text = "Showing All Jobs"
         clickedJobs = actualJobs
-        displayList(actualJobs)
+        displayList(clickedJobs)
     }
 
     fun printJobs() {
