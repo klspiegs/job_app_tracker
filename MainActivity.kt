@@ -1,4 +1,4 @@
-package com.example.final_436
+package com.example.job_app_tracker
 
 import android.content.Context
 import android.content.Intent
@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity() {
 
         //var firebase : FirebaseDatabase = FirebaseDatabase.getInstance()
         //var listener = DataListener()
-        val sharedPreferences = getSharedPreferences("ReferenceNames", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.clear()
-        editor.apply()
+        //val sharedPreferences = getSharedPreferences("ReferenceNames", MODE_PRIVATE)
+        //val editor = sharedPreferences.edit()
+        //editor.clear()
+        //editor.apply()
 
 
     }
