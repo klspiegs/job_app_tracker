@@ -1,4 +1,4 @@
-package com.example.groupproject
+package com.example.job_app_tracker
 
 import android.content.Context
 import android.content.SharedPreferences
