@@ -1,4 +1,4 @@
-package com.example.final_436
+package com.example.job_app_tracker
 
 import android.os.Bundle
 import android.widget.Button
