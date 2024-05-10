@@ -13,13 +13,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GroupProject"
+        android:theme="@style/Theme.Job_app_tracker"
         tools:targetApi="31">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
-        
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyADAE7TCd97lH7qdb-mqvcVW936AFvDOF4" />
@@ -38,6 +38,8 @@
             android:name="com.google.android.gms.ads.AdActivity" />
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".JobActivity"/>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".DataActivity"/>
     </application>
 
 </manifest>
