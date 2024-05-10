@@ -11,6 +11,7 @@
         android:id="@+id/addbtn"
         style="@style/BtnStyle"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:layout_below="@id/imageView"
         android:text="Add Job"
         app:cornerRadius="0dp"
